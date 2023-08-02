@@ -20,11 +20,11 @@ class Product(models.Model):
 
 
 class Category(models.Model):
-    name_prod = models.CharField(max_length=100, verbose_name='Наименование')
-    category_prod = models.CharField(max_length=100, verbose_name='Категория')
+    name_category = models.CharField(max_length=100, verbose_name='Наименование категории')
+    category_description= models.CharField(max_length=100, verbose_name='Описание категории')
 
     def __str__(self):
-        return f'{self.name_prod} {self.category_prod}'
+        return f'{self.name_category} {self.category_description}'
 
     class Meta:
         verbose_name = 'Категория'
