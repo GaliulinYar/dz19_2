@@ -17,3 +17,15 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
+
+
+class Category(models.Model):
+    name_prod = models.CharField(max_length=100, verbose_name='Наименование')
+    category_prod = models.CharField(max_length=100, verbose_name='Категория')
+
+    def __str__(self):
+        return f'{self.name_prod} {self.category_prod}'
+
+    class Meta:
+        verbose_name = 'Продукт'
+        verbose_name_plural = 'Продукты'
