@@ -12,7 +12,7 @@ class Command(BaseCommand):
 
         # Добавить новые данные в базу данных
         new_items = [
-            {'name_category': 'Соки', 'category_description': 'Соки вкусные '},
+            {'name_category': 'Соки', 'category_description': 'Соки вкусные, разные заразные'},
             {'name_category': 'Хлебобулочные изделия', 'category_description': 'Хлеб, булки, пироженки, батон'},
             # Добавьте здесь остальные данные, которые добавляем, здесь можно реалисовать распаковку из файла
         ]
