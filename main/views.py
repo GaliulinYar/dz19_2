@@ -25,8 +25,9 @@ def contacts(request):
     return render(request, 'main/contacts.html')
 
 
-def product(request):
+def product(request, product_id):
+    prod_get = get_object_or_404(Product, pk=product_id)
 
-    return render(request, 'main/product.html')
+    return render(request, 'main/product.html', {'product': prod_get})
 
 

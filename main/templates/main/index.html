@@ -11,9 +11,9 @@
                         <h4 class="card-title pricing-card-title">{{ object.price_prod }} руб.</h4>
                         <img src="/media/123.jpeg" alt="Card image">
                         <p class="card-text">
-                            {{ object.description_prod }} {{ object.id }}
+                            {{ object.description_prod }}
                         </p>
-                        <a href="#" class="btn btn-primary">Купить</a>
+                        <a href="{% url 'product' object.id %}" class="btn btn-primary">Купить</a>
                     </div>
                 </div>
             </div>
