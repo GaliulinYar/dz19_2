@@ -6,7 +6,6 @@ from main.models import Product
 # Create your views here.
 def index(request):
     cat_list = Product.objects.all()
-    print(cat_list)
     context = {
         'object_list': cat_list
     }
