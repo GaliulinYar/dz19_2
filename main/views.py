@@ -1,9 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+
+from main.models import Product
 
 
 # Create your views here.
 def index(request):
-    return render(request, 'main/index.html')
+    cat_list = Product.objects.all()
+    print(cat_list)
+    context = {
+        'object_list': cat_list
+    }
+    return render(request, 'main/index.html', context)
 
 
 def contacts(request):
@@ -16,3 +23,11 @@ def contacts(request):
         print(name, phone, message)
 
     return render(request, 'main/contacts.html')
+
+
+def product(request, product_id):
+    prod_get = get_object_or_404(Product, pk=product_id)
+
+    return render(request, 'main/product.html', {'product': prod_get})
+
+
