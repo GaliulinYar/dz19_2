@@ -25,12 +25,14 @@ def contacts(request):
 
 
 def product(request, product_id):
+    """представление страницы main/product.html для каждого продукта"""
     prod_get = get_object_or_404(Product, pk=product_id)
 
     return render(request, 'main/product.html', {'product': prod_get})
 
 
 def great_prod(request):
+    """Представление страницы main/great_prod.html с формой загрузки нового прожукта"""
     product_for_create = []
     if request.method == 'POST':
         product = {
@@ -44,6 +46,7 @@ def great_prod(request):
         product_for_create.append(
             Product(**product)
         )
+        # загрузка нового продукта в БД
         Product.objects.bulk_create(product_for_create)
 
     return render(request, 'main/great_prod.html')
