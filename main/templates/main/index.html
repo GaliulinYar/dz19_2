@@ -2,6 +2,12 @@
 
     {% block content%}
     <div class="row text-center">
+
+        <div>
+            <h1>Продуктовый магазин "У Махмуда"</h1>
+            <h2>Самые свежие продукты из средней азии</h2>
+        </div>
+
     {% for object in object_list %}
         <div class="col-3">
             <div class="card mb-4 box-shadow">
@@ -19,7 +25,8 @@
             </div>
         </div>
         {% if forloop.counter|divisibleby:"4" and not forloop.last %}
-            </div><div class="row text-center">
+            </div>
+    <div class="row text-center">
         {% endif %}
     {% endfor %}
     </div>
