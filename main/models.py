@@ -6,7 +6,6 @@ class Product(models.Model):
     name_prod = models.CharField(max_length=100, verbose_name='Наименование')
     description_prod = models.CharField(max_length=100, verbose_name='Описание')
     img_prod = models.ImageField(upload_to='preview', verbose_name='Превью', null=True, blank=True)
-    category_prod = models.CharField(max_length=100, verbose_name='Категория')
     category = models.ForeignKey('Category', on_delete=models.CASCADE, verbose_name='Категория', null=True, blank=True)
     price_prod = models.IntegerField(verbose_name='Цена', null=True, blank=True, help_text='Введите цену продукта в рублях')
     data_create_prod = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
@@ -30,3 +29,17 @@ class Category(models.Model):
     class Meta:
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
+
+
+class Version(models.Model):
+    product = models.ForeignKey('Product', on_delete=models.CASCADE)
+    version_number = models.CharField(max_length=10)
+    version_name = models.CharField(max_length=100)
+    is_current = models.BooleanField(default=False)
+
+    def save(self, *args, **kwargs):
+        if self.is_current:
+            # При установке этой версии как активной,
+            # устанавливаем все остальные версии для этого продукта как неактивные
+            Version.objects.filter(product=self.product).exclude(pk=self.pk).update(is_current=False)
+        super(Version, self).save(*args, **kwargs)

@@ -1,7 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from datetime import datetime
+from pytils.translit import slugify
+from django.urls import reverse_lazy
+
+from main.forms import ProductForm
 from main.models import Product
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 
 # Create your views here.
@@ -38,7 +42,7 @@ def great_prod(request):
             'category_prod': request.POST.get('category'),
             'price_prod': request.POST.get('price'),
             'data_create_prod': datetime.now(),
-            'data_change_prod': datetime.now()
+            'data_change_prod': datetime.now(),
         }
         product_for_create.append(
             Product(**product)
@@ -47,3 +51,28 @@ def great_prod(request):
         Product.objects.bulk_create(product_for_create)
 
     return render(request, 'main/great_prod.html')
+
+
+class ProductCreateView(CreateView):
+    model = Product
+    form_class = ProductForm
+    success_url = reverse_lazy('index')
+
+    # def form_valid(self, form):
+    #     if form.is_valid():
+    #         new_mat = form.save()
+    #         new_mat.slug = slugify(new_mat.title_post)
+    #         new_mat.save()
+    #
+    #     return super().form_valid(form)
+
+
+class ProductUpdateView(UpdateView):
+    model = Product
+    form_class = ProductForm
+    success_url = reverse_lazy('index')
+
+
+class ProductDeleteView(DeleteView):
+    model = Product
+    success_url = reverse_lazy('index')
