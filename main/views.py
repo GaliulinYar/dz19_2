@@ -109,14 +109,3 @@ class ProductUpdateView(UpdateView):
 class ProductDeleteView(DeleteView):
     model = Product
     success_url = reverse_lazy('index')
-
-
-class VersionListView(ListView):
-    model = Version
-    template_name = 'main/version.html'
-
-
-class VersionCreateView(CreateView):
-    model = Version
-    form_class = VersionForm
-    success_url = reverse_lazy('main/version.html')
