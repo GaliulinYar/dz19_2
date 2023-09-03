@@ -20,7 +20,7 @@ class Product(models.Model):
     data_create_prod = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     data_change_prod = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
 
-    user_boss = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Продавец')
+    user_boss = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Продавец')
 
     def __str__(self):
         return f'{self.name_prod} {self.price_prod} {self.description_prod}'
